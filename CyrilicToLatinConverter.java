@@ -90,4 +90,28 @@ public class CyrilicToLatinConverter() {
         }
         return latinBuffer.toString();
     }
+
+    public static String latinToCyrilic(String latin) {
+      StringBuffer latBuffer = new StringBuffer(latin);
+      StringBuffer cyrBuffer = new StringBuffer();
+      for (int i = 0; i < latBuffer.length(); ++i) {
+          String s = latBuffer.substring(i, i + 1);
+          if (i < latBuffer.length() - 1) {
+              char c = latBuffer.charAt(i + 1);
+              if (((s.equals("L") || s.equals("l") || s.equals("N") || s.equals("n")) && (c == 'J' || c == 'j'))) {
+                  s = s + "j";
+                  i++;
+              } else if ((s.equals("D") || s.equals("d")) && (c == '\u017D' || c == '\u017E')) {
+                  s = s + '\u017E';
+                  i++;
+              }
+          }
+          if (latMap.containsKey(s)) {
+              cyrBuffer.append(((Character) latMap.get(s)).charValue());
+          } else {
+              cyrBuffer.append(s);
+          }
+        }
+        return cyrBuffer.toString();  
+    }
 }
