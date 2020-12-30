@@ -75,4 +75,19 @@ public class CyrilicToLatinConverter() {
             latMap.put(latin[i], new Character(cyrilic[i]));
         }
     }
+
+    public static String cyrilicToLatin(String cyrilicText){
+        StringBuffer cyrBuffer = new StringBuffer(cyrilicText);
+        StringBuffer latinBuffer = new StringBuffer();
+        for (int i = 0; i<cyrBuffer.length; i++){
+            char c = cyrBuffer.charAt(i);
+            Character character = new Character(c);
+            if (cyrMap.containsKey(character)){
+                latinBuffer.append(cyrMap.get(character));
+            }else {
+                latinBuffer.append(c);
+            }
+        }
+        return latinBuffer.toString();
+    }
 }
