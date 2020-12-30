@@ -67,4 +67,12 @@ public class CyrilicToLatinConverter() {
 
     static Map<Character, String> cyrMap = new HashMap<Character, String>();
     static Map<String, Character> latMap = new HashMap<String, Character>();
+
+
+    static {
+        for (int i = 0; i < cyrilic.length(); ++i) {
+            cyrMap.put(new Character(cyrilic[i], latin[i]));
+            latMap.put(latin[i], new Character(cyrilic[i]));
+        }
+    }
 }
